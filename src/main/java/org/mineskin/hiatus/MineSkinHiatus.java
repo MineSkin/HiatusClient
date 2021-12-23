@@ -121,6 +121,7 @@ public class MineSkinHiatus {
     public void onGameLaunching() {
         if (this.account == null) return;
         notifyGameLaunch();
+        cancelPing();
         sendPingAndRepeat();
     }
 
@@ -131,7 +132,6 @@ public class MineSkinHiatus {
 
     public void sendPingAndRepeat() {
         PING_EXECUTOR.schedule(this::sendPing, ThreadLocalRandom.current().nextInt(1, 30), TimeUnit.SECONDS);
-        if (scheduledPing != null && !scheduledPing.isDone()) return; // avoid multiple ping schedules
         scheduledPing = PING_EXECUTOR.schedule(this::sendPingAndRepeat, (5 * 60) + ThreadLocalRandom.current().nextInt(2, 60), TimeUnit.SECONDS);
     }
 
