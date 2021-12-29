@@ -11,6 +11,7 @@ public class Account {
     private final String authHeader;
 
     public Account(UUID uuid, String email, String token) {
+        if (!MineSkinHiatus.validateTokenAccount(uuid, token)) throw new IllegalArgumentException();
         this.uuid = uuid;
         this.email = email;
         this.hashedEmailAndToken = Util.sha256(email + ":" + token);

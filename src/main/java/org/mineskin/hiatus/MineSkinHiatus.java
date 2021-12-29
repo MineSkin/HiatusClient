@@ -66,7 +66,7 @@ public class MineSkinHiatus {
         });
     }
 
-    public boolean validateTokenAccount(UUID accountUuid, String token) {
+    public static boolean validateTokenAccount(UUID accountUuid, String token) {
         if (accountUuid == null || token == null || token.length() != 40) return false;
         String uuidStart = accountUuid.toString().substring(0, 4);
         String tokenStart = token.substring(0, 4);
