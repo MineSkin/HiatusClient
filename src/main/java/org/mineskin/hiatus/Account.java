@@ -1,5 +1,6 @@
 package org.mineskin.hiatus;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class Account {
@@ -40,6 +41,19 @@ public class Account {
                 ", hashedEmailAndToken='" + hashedEmailAndToken + '\'' +
                 ", authHeader='" + authHeader + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Account account = (Account) o;
+        return Objects.equals(uuid, account.uuid) && Objects.equals(email, account.email) && Objects.equals(hashedEmailAndToken, account.hashedEmailAndToken) && Objects.equals(authHeader, account.authHeader);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(uuid, email, hashedEmailAndToken, authHeader);
     }
 
 }
