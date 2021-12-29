@@ -66,6 +66,16 @@ public class MineSkinHiatus {
         });
     }
 
+    public boolean validateTokenAccount(UUID accountUuid, String token) {
+        if (accountUuid == null || token == null || token.length() != 40) return false;
+        String uuidStart = accountUuid.toString().substring(0, 4);
+        String tokenStart = token.substring(0, 4);
+        if (!uuidStart.equals(tokenStart)) return false;
+        String uuidEnd = accountUuid.toString().substring(accountUuid.toString().length() - 4);
+        String tokenEnd = token.substring(token.length() - 4);
+        return uuidEnd.equals(tokenEnd);
+    }
+
     public CompletableFuture<Map<UUID, String>> getAccounts() {
         return HiatusConfig.load(configFile).thenApply(HiatusConfig::getAccounts);
     }
