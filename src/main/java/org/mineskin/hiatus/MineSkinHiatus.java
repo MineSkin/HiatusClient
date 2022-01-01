@@ -84,7 +84,7 @@ public class MineSkinHiatus {
 
     private Request.Builder newRequest(String endpoint) {
         Request.Builder builder = new Request.Builder()
-                .url("https://nugget.api.mineskin.org/" + endpoint)//TODO
+                .url("https://api.mineskin.org/" + endpoint)
                 .header("User-Agent", "MineSkin-Hiatus/" + version);
         if (this.account != null) {
             builder.header("Authorization", "Bearer " + this.account.getAuthHeader());
